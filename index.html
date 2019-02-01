@@ -1,0 +1,578 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/robot-lung.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    
+    <style>
+
+    .line {
+        background: #00796B;
+      }
+    </style>
+	</head>
+	<body>
+      <div class="line top"></div>
+      <div class="line bottom"></div>
+      <div class="line left"></div>
+      <div class="line right"></div>
+		<div class="reveal">
+			<div class="slides">
+        <section><h1>Piensa en CSS</h1><p>Y gana años de vida con SASS</p></section>
+
+        <section>
+          <h2>¿Qué vamos a ver?</h2>
+
+          <p class="fragment">Lo básico de lo básico: qué entendemos por CSS</p>
+          <p class="fragment">Cómo pensar en CSS y enfrentarnos a una maquetación sin morir en el intento</p>
+          <p class="fragment">Buenas prácticas para ser más felices</p>
+          <p class="fragment">Qué es SASS <span class="fragment">(👀 Spoiler! Es CSS con esteroides)</span></p>
+          <!-- <p class="fragment">Ejemplo</p> -->
+
+        </section>
+        
+				<section>
+          <h2>¿Qué significa CSS?</h2>
+          <p class="fragment" style="text-align: left; margin-left: 25rem;">🌊<span style="font-size: 3.5rem; font-weight: 900">C</span>ascade</p>
+          <p class="fragment" style="text-align: left; margin-left: 25rem;">💅<span style="font-size: 3.5rem; font-weight: 900">S</span>tyle</p>
+          <p class="fragment" style="text-align: left; margin-left: 25rem;">📋<span style="font-size: 3.5rem; font-weight: 900">S</span>heet</p>
+
+        </section>
+
+        <section>
+          <h2>¿Cascada? ¿Algoritmo?</h2>
+          <img src="img/wat.webp" alt="" style="height: 70vh">
+        </section>
+
+        <section>
+          <pre style="width: 75vw;"><code data-trim data-noescape>
+              &lt;p class="better"&gt;This is a paragraph.&lt;/p&gt;
+              &lt;p class="better" id="winning"&gt;One selector to rule them all!&lt;/p&gt;
+          </code></pre>
+
+          <pre style="overflow: hidden"><code data-trim data-noescape style="overflow: hidden">
+              #winning {
+                background-color: red;
+                border: 1px solid black;
+              }
+              
+              .better {
+                background-color: gray;
+                border: none !important;
+              }
+              
+              p {
+                background-color: blue;
+                color: white;
+                padding: 5px;
+              }
+          </code></pre>
+
+          <aside class="notes">
+            Preguntar qué va a pasar
+          </aside>
+        </section>
+
+        <section>
+          <h2>¿Qué selector gana en importancia?</h2>
+
+          <p class="fragment">1. Importancia</p>
+          <p class="fragment">2. <a href="http://cssspecificity.com/#" target="_blank">Especificidad</a></p>
+          <p class="fragment">3. Orden</p>
+
+        </section>
+
+        <!-- <section>
+          <h2>¿Y la herencia?</h2>
+
+          <p class="fragment">Unos estilos se heredarán por los elementos hijos, y otros no.</p>
+
+          <p class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference" target="_blank">Referencia CSS</a></p>
+
+          <aside class="notes">
+              Las propiedades que se heredan por defecto y las que no, viene marcado en gran medida por el sentido común. Tiene sentido que se hereden propiedades como font-size o color, al igual que NO tiene sentido que se herede un margin o un padding.
+
+              Poner ejemplo de 
+          </aside>
+        </section> -->
+        
+        
+        <section data-background-image="img/css-definition.webp" data-background-size="contain" data-background-color="#f6f6f6">
+          <!-- <img src="img/css-definition.webp" style="height: 100vh" alt=""> -->
+
+        </section>
+
+        <section>
+          <img src="img/peter.gif" style="border: none; height: 70vh" alt="">
+
+        </section>
+
+        <section data-transition="fade-in">
+          <h4>Paso 1: Boceto</h4>
+          <img src="img/how-to-css_sketch.png" style="height: 70vh" alt="">
+
+        </section>
+
+        <section data-transition="fade-in">
+          <h4>Paso 2: Piensa en bloques</h4>
+          <img src="img/how-to-css_blocks.png" style="height: 70vh" alt="">
+
+        </section>
+
+        <section data-transition="fade-in">
+          <h4>Paso 3: empieza con un buen HTML</h4>
+          <img src="img/how-to-css_semantic tags.png" style="height: 70vh" alt="">
+        </section>
+
+        <section>
+          <h2>Paso 4: empieza a maquetar</h2>
+
+          <img src="img/jim-carrey.gif" style="height: 60vh; border: none" alt="">
+        </section>
+
+        <section>
+          <h2>Buenas prácticas para ser más felices<br>😃</h2>
+          <p>(Y tener un código más sano, mantenible y escalable)</p>
+        </section>
+
+        <!-- <section>
+          <h2>Crea una tabla de contenidos</h2>
+
+          <pre><code data-trim data-noescape>
+/**
+ * CONTENTS
+ *
+ * SETTINGS
+ * Global...............Globally-available variables and config.
+ *
+ * TOOLS
+ * Mixins...............Useful mixins.
+ *
+ * GENERIC
+ * Normalize.css........A level playing field.
+ * Box-sizing...........Better default `box-sizing`.
+ *
+ * BASE
+ * Headings.............H1–H6 styles.
+ *
+ * OBJECTS
+ * Wrappers.............Wrapping and constraining elements.
+ *
+ * COMPONENTS
+ * Page-head............The main page header.
+ * Page-foot............The main page footer.
+ * Buttons..............Button elements.
+ *
+ * TRUMPS
+ * Text.................Text helpers.
+ */
+          </code></pre>
+        </section> -->
+
+        <section>
+          <h2>Organiza tu código por secciones</h2>
+
+          <pre><code data-trim data-noescape>
+/*------------------------------------*/
+/* SECTION                            */
+/*------------------------------------*/
+....
+
+
+/* SUB-SECTION                        */
+/*------------------------------------*/
+....
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Piensa bien los nombres de tus clases</h2>
+
+          <p class="fragment">Usar nombres de clase para describir el contenido es redundante porque el contenido se describe a sí mismo.</p>
+        </section>
+
+        <section>
+            <pre><code data-trim data-noescape>
+                /* No es muy mantenible */
+               .blue {
+                 color: blue;
+               }
+               
+               /* Depende de su ubicación */
+               .header span {
+                 color: blue;
+               }
+               
+               /* Demasiado específico, no es muy reutilizable */
+               .header-color {
+                 color: blue;
+               }
+               
+               /* Buena abstracción y muy reutilizable */
+               .highlight-color {
+                 color: blue;
+               }
+              </code></pre>
+        </section>
+
+        <section>
+          <h2>Optimiza tus selectores</h2>
+
+          <p>(Mejora su rendimiento)</p>
+
+        </section>
+
+        <section>
+            <pre><code data-trim data-noescape>
+                body.home div.header ul { }
+            </code></pre>
+
+            <pre class="fragment"><code data-trim data-noescape>
+                .primary-nav { }
+            </code></pre>
+
+            <p class="fragment">El navegador lee los selectores <b>de derecha a izquierda</b></p>
+
+        </section>
+
+        <section>
+          <h2>Evita el uso de IDs</h2>
+          <p class="fragment">Mantén una especificidad baja</p>
+          <p class="fragment">Los IDs no son reutilizables</p>
+          <p class="fragment">Es correcto usar IDs en HTML y JS, aunque en CSS puede llegar a dar problemas</p>
+        </section>
+
+        <section>
+          <h2>!important == ñapa</h2>
+          <p class="fragment">(El 99.9% de las veces)</p>
+          <p class="fragment">Puede ser un síntoma de un problema mucho mayor en el código</p>
+          <p class="fragment">¿Cómo prevernirlo? <span class="fragment">Manteniendo una <b>especificidad baja</b></span></p>
+
+        </section>
+
+        <!-- <section>
+          <h2>DRY <i>(Don’t Repeat Yourself)</i></h2>
+          <p>Busca patrones</p>
+        </section> -->
+
+        <section>
+          <h2>Ordena las propiedades por grupos</h2>
+          <p>En función del posicionamiento, box model, colores, tipografías...</p>
+        </section>
+
+        <section>
+          <pre><code data-trim data-noescape>
+            .selector {
+              /* Positioning */
+              position: absolute;
+              z-index: 10;
+              top: 0;
+              right: 0;
+            
+              /* Display & Box Model */
+              display: inline-block;
+              overflow: hidden;
+              box-sizing: border-box;
+              width: 100px;
+              height: 100px;
+              padding: 10px;
+              border: 10px solid #333;
+              margin: 10px;
+            
+              /* Color */
+              background: #000;
+              color: #fff
+              
+              /* Text */
+              font-family: sans-serif;
+              font-size: 16px;
+              line-height: 1.4;
+              text-align: right;
+            
+              /* Other */
+              cursor: pointer;
+            }
+
+          </code></pre>
+
+          <p class="fragment"><a href="http://csscomb.com/" target="_blank">CSScomb</a></p>
+        </section>
+
+        <section>
+          <h2>Divide y vencerás</h2>
+          <p>Separa tu código en archivos en según <b>componentes</b> y <b>funcionalidad</b></p>
+        </section>
+
+        <section>
+          <img src="img/sass.png" alt="" style="border:none; box-shadow: none; height: 90vh;">
+
+        </section>
+
+        <section>
+          <img src="img/css_sass_compass.jpg" style="height: 90vh" alt="">
+        </section>
+
+        <section>
+          <!-- <h2>SASS</h2> -->
+
+          <!-- <img src="img/sass.png" alt="" style="border:none; box-shadow: none; height: 60vh"> -->
+
+          <h2>Preprocesador CSS</h2>
+          <p class="fragment">Un preprocesador CSS es un "programa" que te permite generar CSS a partir de la sintaxis única del preprocesador.</p>
+          <p class="fragment">Con SASS usar mecanismos de lenguajes de programación orientado a objetos, es decir que nos permite usar variables, anidamientos, herencias y mucho más.</p>
+          <p class="fragment">Para utilizar un preprocesador CSS debes instalar un compilador CSS</p>
+
+        </section>
+
+        <section>
+          <h3>¿Cómo compilamos SASS?</h3>
+          <h4 class="fragment"><a href="https://www.npmjs.com/package/node-sass?activeTab=versions" target="_blank">node-sass</a></h4>
+          <p class="fragment"><b>Instalación:</b> npm i -g node-sass</p>
+          <p class="fragment"><b>Compilar:</b> node-sass test.scss > test.css</p>
+          <p class="fragment"><b>Compilar minificado:</b> node-sass --output-style compressed test.scss > test.min.css</p>
+          <p class="fragment"><a href="https://github.com/sass/node-sass-middleware" target="_blank">node-sass-middleware</a></p>
+        </section>
+
+        <section>
+          <img src="img/minions.gif" alt="" style="height: 80vh">
+          <p class="fragment">(Vamos a ver los superpoderes de SASS)</p>
+        </section>
+
+        <section>
+          <p>1er Superpoder 💪</p>
+          <h2 class="fragment">Variables</h2>
+
+        </section>
+
+        <section>
+            <pre><code data-trim data-noescape>
+                $title-font: normal 24px/1.5 'Open Sans', sans-serif;
+                $primary-color: #F44336;
+                $box-shadow-bottom-only: 0 2px 1px 0 rgba(0, 0, 0, 0.2);
+                
+                h1.title {
+                  font: $title-font;
+                  color: $primary-color;
+                }
+                
+                div.container {
+                  color: $primary-color;
+                  background: #fff;
+                  width: 100%;
+                  box-shadow: $box-shadow-bottom-only;
+                }
+              </code></pre>
+        </section>
+
+        <section>
+          <p>2º Superpoder 💪</p>
+          <h2 class="fragment">Mixins</h2>
+
+          <p class="fragment">Es una versión simplificada de un constructor de clases en lenguajes de programación</p>
+          <p class="fragment">Estableces un grupo de declaraciones CSS y las reutilizas, cambiando los valores a los recibidos por argumentos</p>
+
+        </section>
+
+        <section>
+          <pre><code data-trim data-noescape>
+              @mixin square($size, $color) {
+                width: $size;
+                height: $size;
+                background-color: $color;
+              }
+              
+              .small-blue-square {
+                @include square(20px, rgb(0,0,255));
+              }
+              
+              .big-red-square {
+                @include square(300px, rgb(255,0,0));
+              }
+          </code></pre>          
+        </section>
+
+        <section>
+          <p>3er Superpoder 💪</p>
+          <h2 class="fragment">Nesting (Anidación)</h2>
+
+        </section>
+
+        <section>
+            <pre><code data-trim data-noescape>
+                ul {
+                  list-style: none;
+                
+                  li {
+                    padding: 15px;
+                    display: inline-block;
+                
+                    a {
+                      text-decoration: none;
+                      font-size: 16px;
+                      color: #444;
+                    }
+                  }
+                }
+              </code></pre>
+        </section>
+
+        <section>
+          <p>4º Superpoder 💪</p>
+          <h2 class="fragment">Funciones</h2>
+
+          <p class="fragment">darken, lighten, random, round...</p>
+          <p class="fragment"><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html" target="_blank">Listado</a></p>
+          <p class="fragment"><a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#function_directives" target="_blank">(También puedes definir las tuyas)</a></p>
+
+        </section>
+
+        <section>
+            <pre><code data-trim data-noescape>
+                $primary-color: #2196F3;
+
+                a {
+                  padding: 10px 15px;
+                  background-color: $primary-color;
+                }
+                
+                a:hover {
+                  background-color: darken($primary-color,10%);
+                }
+              </code></pre>
+        </section>
+
+        <section>
+          <p>5º Superpoder 💪</p>
+          <h2 class="fragment">@import</h2>
+        </section>
+
+        <section>
+            <pre><code data-trim data-noescape>
+@import "archivo1";
+@import "archivo2";
+@import "archivo3"; 
+              </code></pre>
+        </section>
+
+        <section>
+            <pre><code data-trim data-noescape>
+                sass/ 
+                | 
+                |– base/ 
+                |   |– _reset.scss       # Reset/normalize 
+                |   |– _typography.scss  # Typography rules 
+                |   ...                  # Etc… 
+                | 
+                |– components/ 
+                |   |– _buttons.scss     # Buttons 
+                |   |– _carousel.scss    # Carousel 
+                |   |– _cover.scss       # Cover 
+                |   |– _dropdown.scss    # Dropdown 
+                |   |– _navigation.scss  # Navigation 
+                |   ...                  # Etc… 
+                | 
+                |– helpers/ 
+                |   |– _variables.scss   # Sass Variables 
+                |   |– _functions.scss   # Sass Functions 
+                |   |– _mixins.scss      # Sass Mixins 
+                |   |– _helpers.scss     # Class & placeholders helpers 
+                |   ...                  # Etc… 
+                | 
+                |– layout/ 
+                |   |– _grid.scss        # Grid system 
+                |   |– _header.scss      # Header 
+                |   |– _footer.scss      # Footer 
+                |   |– _sidebar.scss     # Sidebar 
+                |   |– _forms.scss       # Forms 
+                |   ...                  # Etc… 
+                | 
+                |– pages/ 
+                |   |– _home.scss        # Home specific styles 
+                |   |– _contact.scss     # Contact specific styles 
+                |   ...                  # Etc… 
+                | 
+                |– themes/ 
+                |   |– _theme.scss       # Default theme 
+                |   |– _admin.scss       # Admin theme 
+                |   ...                  # Etc… 
+                | 
+                |– vendors/ 
+                |   |– _bootstrap.scss   # Bootstrap 
+                |   |– _jquery-ui.scss   # jQuery UI 
+                |   ...                  # Etc… 
+                | 
+                | 
+                `– main.scss             # primary Sass file 
+              </code></pre>
+
+        </section>
+
+        <section>
+          <h2>¡Hay mucho más!</h2>
+          <p class="fragment">Depuración, control de errores, if, for, each, while...</p>
+          <p class="fragment"><a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html" target="_blank">Revisa la documentación</a></p>
+        </section>
+
+        <section>
+          <h3>Enlaces de interés</h3>
+
+          <p class="fragment"><a href="https://github.com/necolas/idiomatic-css">Idiomatic CSS</a> - Principles of writing consistent, idiomatic CSS</p>
+          <p class="fragment"><a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html" target="_blank">Documentación SASS</a></p>
+          <p class="fragment"><a href="https://www.w3.org/Style/CSS/current-work" target="_blank">CSS Current Work</a></p>
+          <p class="fragment"><a href="https://learn.shayhowe.com/advanced-html-css/" target="_blank">Advanced HTML & CSS</a></p>
+        </section>
+
+        <section>
+          <h2>Preguntas en las cervezas</h2>
+          <img src="img/beer.webp" alt="" style="height: 70vh">
+        </section>
+
+        <section>
+          <h1>Mil gracias</h1>
+          <h2>😊</h2>
+        </section>
+
+
+        <!-- <section>
+          <img src="img/panda.webp" alt="" style="border: none; height: 85vh;">
+        </section> -->
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+        margin: 0.2,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
